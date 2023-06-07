@@ -31,5 +31,9 @@ class Main {
         byte var1 = sc.nextByte();
         short var2 = sc.nextShort();
         int var3 = sc.nextInt();
+
+        // i/p char, i/p string
+        String str = sc.next();             // str = Java
+        char ch = sc.next().charAt(0);      // ch = J
     }
 }
