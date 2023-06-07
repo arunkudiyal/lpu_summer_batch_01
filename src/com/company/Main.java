@@ -35,5 +35,9 @@ class Main {
         // i/p char, i/p string
         String str = sc.next();             // str = Java
         char ch = sc.next().charAt(0);      // ch = J
+
+        // Wrapper Classes --> Class deravate fpr the primitive DTs
+        // int -> Integer
+        Integer newInt = new Integer(10); int b = 100;
     }
 }
