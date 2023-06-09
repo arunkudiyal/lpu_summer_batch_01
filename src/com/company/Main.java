@@ -38,6 +38,5 @@ class Main {
 
         // Wrapper Classes --> Class deravate fpr the primitive DTs
         // int -> Integer
-        Integer newInt = new Integer(10); int b = 100;
     }
 }
