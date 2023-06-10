@@ -5,6 +5,8 @@ package com.company;
 // Object :- The real-life entities created from the class is called an object.
 
 class Animal {
+    // Class :- A block which contains properties, methods & constructors.
+
     // 1. Data Members :- The primitive / non-primitive data used for building the objects.
     String name; int no_of_legs; boolean isCarnivorous; boolean canPet; String color;
     // Member Functions :- Functions or Methods which help you create a default function available for all the object created from the objects.
@@ -31,6 +33,7 @@ public class ObjectOrientedProgramming {
         // Syntax :- ClassName objectName = new Constructor();
         // Constructor has the same name as that of the class
         Animal dog = new Animal(4, true, true, "Black", "Jack");
+        // dog.name = "..."
         dog.display();                          // Default Values - int - 0, String - null, float/double - 0.0, boolean - false, ...
         dog.display();
     }
