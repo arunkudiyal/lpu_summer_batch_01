@@ -17,7 +17,17 @@ interface Employee {
 //    public int display(int roi);
 //}
 
-public class InterfaceExample {
+interface Person {
+    public void show();
+}
+
+public class InterfaceExample implements Employee, Person {
+    public void display() {
+
+    }
+    public void show() {
+
+    }
     public static void main(String[] args) {
 
     }
