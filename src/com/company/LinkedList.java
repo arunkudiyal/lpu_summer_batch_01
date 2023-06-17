@@ -28,7 +28,15 @@ public class LinkedList {
             temp.next = newNode;
         }
     }
-    // public void insertAtBeg(int data) { ... }            // ASSIGNMENT - 1
+    public void insertAtBeg(int data) {
+        Node newNode = new Node(data);
+        if(head == null) head = newNode;
+        else {
+            Node temp = head;
+            head = newNode;
+            head.next = temp;
+        }
+    }
     public void insertAfter(int data1, int data2) {
         Node temp = head;
         while(temp.data != data1) {
@@ -71,5 +79,7 @@ public class LinkedList {
         list.display();                                 // 100 200 300 400 500
         list.insertAfter(200, 50);
         list.display();                                 // 100 200 300 50 400 500
+        list.insertAtBeg(10);
+        list.display();                                 // 10 100 200 300 50 400 500
     }
 }
