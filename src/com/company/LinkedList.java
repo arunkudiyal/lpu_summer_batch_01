@@ -28,6 +28,7 @@ public class LinkedList {
             temp.next = newNode;
         }
     }
+    // A utility method to insert the data at the start of the LinkedList
     public void insertAtBeg(int data) {
         Node newNode = new Node(data);
         if(head == null) head = newNode;
@@ -98,6 +99,13 @@ public class LinkedList {
             System.out.println();
         }
     }
+    // Q:- Given a linkedList "list", create a function printReverse to print the linkedList in the reverse order, without actually reversing the LL.
+    // Constraint :- You are not allowed to use any other DS like Arrays.
+    public void displayReverse(Node head) {
+        if(head == null) return;
+        displayReverse(head.next);
+        System.out.print(head.data + " ");
+    }
     public static void main(String[] args) {
         LinkedList list = new LinkedList();             // head = null | denoting that no new Node was created yet.
         list.display();
@@ -118,5 +126,6 @@ public class LinkedList {
         list.display();                                 // 100 200 300 50 400
         list.deleteElement(50);
         list.display();                                 // 100 200 300 400
+        list.displayReverse(head);                      // 400 300 200 100
     }
 }
