@@ -55,6 +55,20 @@ public class LinkedList {
             newNode.next = temp2;
         }
     }
+    // A utility method to delete an element at the end of the LinkedList
+    public void deleteFromEnd() {
+        if(head == null) System.out.println("LinkedList is empty, call insertAtEnd() to insert!");
+        else {
+            Node temp = head;
+            while(temp.next.next != null) temp = temp.next;
+            temp.next = null;
+        }
+    }
+    // A utility method to delete an element from the start of the LinkedList
+    public void deleteFromStart() {
+        if(head == null) System.out.println("LinkedList is empty, call insertAtEnd() to insert!");
+        else head = head.next;
+    }
     // A utility method to display the elements of the LinkedList
     public void display() {
         if(head == null) {
@@ -71,6 +85,7 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();             // head = null | denoting that no new Node was created yet.
         list.display();
+        list.deleteFromEnd();
         list.insertAtEnd(100);
         list.insertAtEnd(200);
         list.insertAtEnd(300);
@@ -81,5 +96,9 @@ public class LinkedList {
         list.display();                                 // 100 200 300 50 400 500
         list.insertAtBeg(10);
         list.display();                                 // 10 100 200 300 50 400 500
+        list.deleteFromEnd();
+        list.display();                                 // 10 100 200 300 50 400
+        list.deleteFromStart();
+        list.display();                                 // 100 200 300 50 400
     }
 }
