@@ -37,6 +37,9 @@ public class BinarySearchTree {
     public void delete(int key) {
         root = deleteKey(root, key);
     }
+    public int height() {
+        return getHeight(root);
+    }
     private Node insertData(Node root, int data) {
         // 1. Tree is not available
         if(root == null) root = new Node(data);
@@ -77,11 +80,22 @@ public class BinarySearchTree {
                 else {
                     // Math.min(root.left.data, root.right.data)
                     root.data = findMin(root.right);
+                    // root.data = findMax(root.left)
                     root.right = deleteKey(root.right, root.data);
+                    // root.left = deleteKey(root.left, root.data);
                 }
             }
         }
         return root;
+    }
+    private int getHeight(Node root) {
+        // height of the empty tree will be -1
+        if(root == null) return -1;
+        else {
+            int lHeight = getHeight(root.left);
+            int rHeight = getHeight(root.right);
+            return Math.max(lHeight, rHeight) + 1;
+        }
     }
     private void inOrderTraversal(Node root) {
         if(root != null) {
@@ -129,6 +143,7 @@ public class BinarySearchTree {
         bst.inOrder();                                                          // 9 17 20 23 32 77 92
         bst.delete(200);
         bst.inOrder();                                                          // 9 17 20 23 32 77 92
+        System.out.println(bst.height());                                       // 3
 
         // QUESTIONS BASED ON ORDER OF BST :-
         // Q.1 - Given a preOrder of a BST, find the postOrder & inOrder for the BST. (POSSIBLE)
