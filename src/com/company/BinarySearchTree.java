@@ -34,6 +34,9 @@ public class BinarySearchTree {
         if(address == null) return false;
         else return true;
     }
+    public void delete(int key) {
+        root = deleteKey(root, key);
+    }
     private Node insertData(Node root, int data) {
         // 1. Tree is not available
         if(root == null) root = new Node(data);
@@ -48,6 +51,36 @@ public class BinarySearchTree {
         if(root == null || key == root.data) return root;
         else if(key < root.data) return searchKey(root.left, key);
         else if(key > root.data) return searchKey(root.right, key);
+        return root;
+    }
+    private int findMin(Node root) {
+        int minVal = root.data;
+        while(root.left != null) {
+            minVal = root.left.data;
+            root = root.left;
+        }
+        return minVal;
+    }
+    private Node deleteKey(Node root, int key) {
+        // Step1 -> Search for the key to be deleted
+        if(root == null) return null;
+        else {
+            if(key < root.data) root.left = deleteKey(root.left, key);
+            else if(key > root.data) root.right = deleteKey(root.right, key);
+            // key == root.data
+            else {
+                // Case_1 - Node deleted is a leaf node
+                // Case_2 - Node deleted has a left or right subtree.
+                if(root.left == null) return root.right;
+                else if(root.right == null) return root.left;
+                // Case_3 - Node deleted has both left & right subtree.
+                else {
+                    // Math.min(root.left.data, root.right.data)
+                    root.data = findMin(root.right);
+                    root.right = deleteKey(root.right, root.data);
+                }
+            }
+        }
         return root;
     }
     private void inOrderTraversal(Node root) {
@@ -90,6 +123,12 @@ public class BinarySearchTree {
         bst.postOrder();                                                        // 4 17 9 23 20 92 77 32 30
         System.out.println(bst.search(77));                                // true
         System.out.println(bst.search(100));                               // false
+        bst.delete(30);
+        bst.inOrder();                                                          // 4 9 17 20 23 32 77 92
+        bst.delete(4);
+        bst.inOrder();                                                          // 9 17 20 23 32 77 92
+        bst.delete(200);
+        bst.inOrder();                                                          // 9 17 20 23 32 77 92
 
         // QUESTIONS BASED ON ORDER OF BST :-
         // Q.1 - Given a preOrder of a BST, find the postOrder & inOrder for the BST. (POSSIBLE)
