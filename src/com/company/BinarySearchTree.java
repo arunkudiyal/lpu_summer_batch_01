@@ -64,6 +64,14 @@ public class BinarySearchTree {
         }
         return minVal;
     }
+    private int findMax(Node root) {
+        int maxValue = root.data;
+        while(root.right != null) {
+            maxValue = root.right.data;
+            root = root.right;
+        }
+        return maxValue;
+    }
     private Node deleteKey(Node root, int key) {
         // Step1 -> Search for the key to be deleted
         if(root == null) return null;
@@ -79,10 +87,12 @@ public class BinarySearchTree {
                 // Case_3 - Node deleted has both left & right subtree.
                 else {
                     // Math.min(root.left.data, root.right.data)
-                    root.data = findMin(root.right);
-                    // root.data = findMax(root.left)
-                    root.right = deleteKey(root.right, root.data);
-                    // root.left = deleteKey(root.left, root.data);
+                    // Way1 - find the min from the left subtree
+                    // root.data = findMin(root.right);
+                    // root.right = deleteKey(root.right, root.data);
+                    // Way2 - find the max from the left subtree
+                    root.data = findMax(root.left);
+                    root.left = deleteKey(root.left, root.data);
                 }
             }
         }
