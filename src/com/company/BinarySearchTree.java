@@ -29,6 +29,10 @@ public class BinarySearchTree {
         postOrderTraversal(root);
         System.out.println();
     }
+    public void descendingOrder() {
+        descendingOrderTraversal(root);
+        System.out.println();
+    }
     public boolean search(int key) {
         Node address = searchKey(root, key);
         if(address == null) return false;
@@ -108,25 +112,38 @@ public class BinarySearchTree {
             return Math.max(lHeight, rHeight) + 1;
         }
     }
+    // Q:- Create a descending order travel, which prints the BST in the desc order.
+    private void descendingOrderTraversal(Node root) {
+        if(root != null) {
+            descendingOrderTraversal(root.right);   // R
+            System.out.print(root.data + " ");      // D
+            descendingOrderTraversal(root.left);    // L
+        }
+    }
+
+    // RESEARCH WORK --> Try the combinations of R and L in inOrder, preOrder & postOrder and check for observations
+    // levelOrderPrinting --> Print the data level-wise
+
+    // NOTE :- inOrder always prints the values in the BST in ascending order.
     private void inOrderTraversal(Node root) {
         if(root != null) {
-            inOrderTraversal(root.left);        // L
-            System.out.print(root.data + " ");  // D
-            inOrderTraversal(root.right);       // R
+            inOrderTraversal(root.left);        // L R
+            System.out.print(root.data + " ");  // D D
+            inOrderTraversal(root.right);       // R L
         }
     }
     private void preOrderTraversal(Node root) {
         if(root != null) {
-            System.out.print(root.data + " ");  // D
-            preOrderTraversal(root.left);       // L
-            preOrderTraversal(root.right);      // R
+            System.out.print(root.data + " ");  // D D
+            preOrderTraversal(root.left);       // L R
+            preOrderTraversal(root.right);      // R L
         }
     }
     private void postOrderTraversal(Node root) {
         if(root != null) {
-            postOrderTraversal(root.left);       // L
-            postOrderTraversal(root.right);      // R
-            System.out.print(root.data + " ");   // D
+            postOrderTraversal(root.left);       // L R
+            postOrderTraversal(root.right);      // R L
+            System.out.print(root.data + " ");   // D D
         }
     }
     public static void main(String[] args) {
@@ -155,6 +172,7 @@ public class BinarySearchTree {
         bst.delete(200);
         bst.inOrder();                                                          // 9 17 20 23 32 77 92
         System.out.println(bst.height());                                       // 3
+        bst.descendingOrder();                                                  // 92 77 32 23 20 17 9
 
         // QUESTIONS BASED ON ORDER OF BST :-
         // Q.1 - Given a preOrder of a BST, find the postOrder & inOrder for the BST. (POSSIBLE)

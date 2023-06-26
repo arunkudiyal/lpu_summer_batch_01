@@ -3,7 +3,7 @@ package com.company;
 public class MaxHeap {
     private final int[] Heap;
     private final int maxSize;            // The total size of the Heap array.
-    private int size;               // The total number of elements the Heap contains at a given moment.
+    private int size;                    // The total number of elements the Heap contains at a given moment.
     MaxHeap(int maxSize) {
         this.maxSize = maxSize;
         Heap = new int[maxSize];
