@@ -40,6 +40,7 @@ public class BinarySearchTree {
     public int height() {
         return getHeight(root);
     }
+    // Utility Functions
     private Node insertData(Node root, int data) {
         // 1. Tree is not available
         if(root == null) root = new Node(data);
@@ -87,10 +88,10 @@ public class BinarySearchTree {
                 // Case_3 - Node deleted has both left & right subtree.
                 else {
                     // Math.min(root.left.data, root.right.data)
-                    // Way1 - find the min from the left subtree
+                    // Way1 - find the min from the Right subtree
                     // root.data = findMin(root.right);
                     // root.right = deleteKey(root.right, root.data);
-                    // Way2 - find the max from the left subtree
+                    // Way2 - find the max from the Left subtree
                     root.data = findMax(root.left);
                     root.left = deleteKey(root.left, root.data);
                 }
