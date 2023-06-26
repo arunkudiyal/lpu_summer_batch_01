@@ -18,6 +18,13 @@ public class MaxHeap {
         Heap[f_pos] = Heap[s_pos];
         Heap[s_pos] = temp;
     }
+    public boolean isLeaf(int pos) {
+        if(pos > size/2 && pos <= size) return true;
+        return false;
+    }
+    public int getMax() {
+        return Heap[0];
+    }
     public void insert(int element) {
         int pos = size;
         Heap[pos] = element;
@@ -27,6 +34,25 @@ public class MaxHeap {
             pos = parent(pos);
         }
         ++size;
+    }
+    private void maxHeapify(int pos) {
+        if(isLeaf(pos)) return;
+        if(Heap[pos] < Heap[left(pos)] || Heap[pos] < Heap[right(pos)]) {
+            if(Heap[left(pos)] > Heap[right(pos)]) {
+                swap(pos, left(pos));
+                maxHeapify(left(pos));
+            } else {
+                swap(pos, right(pos));
+                maxHeapify(right(pos));
+            }
+        }
+    }
+    public int exactMax() {
+        int deleted = Heap[0];
+        Heap[0] = Heap[--size];
+        // check and manage if the properties of the heap are satisfied
+        maxHeapify(0);
+        return deleted;
     }
     public void display() {
         // 7/2 = 3; i = 0, 1, 2
@@ -45,6 +71,10 @@ public class MaxHeap {
         heap.insert(25);
         heap.insert(30);
         heap.insert(35);
+        System.out.println("Max element from heap is - " + heap.getMax());      // 35
         heap.display();
+        heap.exactMax();
+        heap.display();
+        System.out.println("Max element from heap is - " + heap.getMax());      // 30
     }
 }
