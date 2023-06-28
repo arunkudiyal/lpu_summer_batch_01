@@ -43,6 +43,6 @@ public class BFSGraph {
                 g.graph[i][j] = sc.nextInt();
             }
         }
-        g.BFS(0);                                                           // 0 1 2 3 4
+        g.BFS(0);                                                           // 0 1 2 3 4 | 0 1 3 5 2 4
     }
 }
