@@ -21,6 +21,8 @@ public class PrimsAlgorithmMST {
         // Step3 -> Make the entry point of the graph
         cost[0] = graph[0][0];
         for(int i=0; i < V; i++) {
+            // minCostVertex is a function which gives the value of the vertex
+            // which has not been visited but has the least cost
             int u = minCostVertex(cost, visited);
             visited[u] = true;
             // I am looking for all the neighbors of u
@@ -31,6 +33,7 @@ public class PrimsAlgorithmMST {
                 }
             }
         }
+        // Create a display which is going to build the MST
 
     }
     public static void main(String[] args) {
