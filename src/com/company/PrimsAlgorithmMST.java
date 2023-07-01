@@ -14,12 +14,14 @@ public class PrimsAlgorithmMST {
         boolean[] visited = new boolean[V];
         // Step2 -> Create a track of the min cost for reaching the vertex V
         int[] cost = new int[V];
+        int[] parent = new int[V];
         for(int i=0; i < V; i++) {
             visited[i] = false;
             cost[i] = Integer.MAX_VALUE;
         }
         // Step3 -> Make the entry point of the graph
         cost[0] = graph[0][0];
+        parent[0] = -1;
         // for in total of V-1 edges
         for(int i=0; i < V-1; i++) {
             // minCostVertex is a function which gives the value of the vertex
@@ -30,15 +32,23 @@ public class PrimsAlgorithmMST {
             for(int v=0; v < V; v++) {
                 // if(there is an edge AND not visited AND the cost is min
                 if(graph[u][v] != 0 && !visited[v] && graph[u][v] <= cost[v]) {
+                    parent[v] = u;
                     cost[v] = graph[u][v];
                 }
             }
         }
+        // Printing the total sum of the MST
+        //        int totalCost = 0;
+        //        for(int i=0; i < V; i++)
+        //            totalCost += cost[i];
+        //        System.out.println(totalCost);
         // Create a display which is going to build the MST
-        int totalCost = 0;
-        for(int i=0; i < V; i++)
-            totalCost += cost[i];
-        System.out.println(totalCost);
+        display(parent, this.graph);
+    }
+    public void display(int[] parent, int[][] graph) {
+        System.out.println("S_To_D\tCost");
+        for(int i=1; i < V; i++)
+            System.out.println(parent[i] + " - " + i + "\t" + graph[i][parent[i]]);
     }
     public int minCostVertex(int[] cost, boolean[] visited) {
         int min = Integer.MAX_VALUE; int min_vertex = -1;
